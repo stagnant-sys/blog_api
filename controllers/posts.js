@@ -6,7 +6,10 @@ const BlogPost = require('../models/post');
 
 // GET all posts
 exports.posts_index_get = asyncHandler(async (req, res, next) => {
-  const posts = await BlogPost.find({ visibility: 'public' }).exec();
+  const posts = await BlogPost.find({ visibility: 'public' })
+    .sort({ timestamp: -1 })
+    .populate('author')
+    .exec();
   res.json(posts);
 });
 
