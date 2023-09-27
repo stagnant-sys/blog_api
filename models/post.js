@@ -7,7 +7,7 @@ const BlogPostSchema = new Schema ({
   title: { type: String, required: true },
   text: { type: String, required: true },
   timestamp: { type: Date, default: Date.now() },
-  visiblity: { type: String, required: true },
+  visibility: { type: String, required: true },
 });
 
 module.exports = mongoose.model('BlogPost', BlogPostSchema);

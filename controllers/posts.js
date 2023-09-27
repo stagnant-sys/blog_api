@@ -2,13 +2,17 @@ const express = require('express');
 const router = express.Router();
 const asyncHandler = require("express-async-handler");
 
+const BlogPost = require('../models/post');
+
 // GET all posts
 exports.posts_index_get = asyncHandler(async (req, res, next) => {
-  res.send('GET posts index');
+  const posts = await BlogPost.find({ visibility: 'public' });
+  res.json(posts);
 });
 
 
 // GET post detail (text, comments)
 exports.post_detail_get = asyncHandler(async (req, res, next) => {
-  res.send('Post id: ' + req.params.id);
+  const post = await BlogPost.findById(req.params.id);
+  res.json(post);
 });
