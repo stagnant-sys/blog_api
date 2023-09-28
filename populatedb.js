@@ -41,7 +41,6 @@ async function postCreate(index, author, title, text, visibility) {
     author,
     title,
     text,
-    timestamp: new Date(),
     visibility,
   });
   await post.save();
@@ -62,7 +61,6 @@ async function commentCreate(index, author, post, text) {
     author,
     post,
     text,
-    timestamp: new Date(),
   });
   await comment.save();
   comments[index] = comment;
