@@ -6,9 +6,8 @@ const BlogPostSchema = new Schema ({
   author: { type: Schema.Types.ObjectId, ref: 'User', required: true },
   title: { type: String, required: true },
   text: { type: String, required: true },
-  timestamp: { type: Date, default: Date.now() },
   visibility: { type: String, required: true },
-});
+}, { timestamps: true });
 
 BlogPostSchema.virtual('timestamp_formatted').get(function () {
   return this.timestamp.toLocaleDateString();
