@@ -10,4 +10,8 @@ const BlogPostSchema = new Schema ({
   visibility: { type: String, required: true },
 });
 
+BlogPostSchema.virtual('timestamp_formatted').get(function () {
+  return this.timestamp.toLocaleDateString();
+})
+
 module.exports = mongoose.model('BlogPost', BlogPostSchema);

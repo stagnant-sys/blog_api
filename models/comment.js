@@ -9,4 +9,8 @@ const CommentSchema = new Schema ({
   timestamp: { type: Date, default: Date.now() },
 });
 
+CommentSchema.virtual('timestamp_formatted').get(function () {
+  return this.timestamp.toLocaleDateString();
+})
+
 module.exports = mongoose.model('Comment', CommentSchema);
