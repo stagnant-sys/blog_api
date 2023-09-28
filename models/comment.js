@@ -12,8 +12,12 @@ const CommentSchema = new Schema ({
   toJSON: { virtuals: true }
 });
 
-CommentSchema.virtual('timestamp_formatted').get(function () {
-  return this.timestamp.toLocaleDateString();
+CommentSchema.virtual('createdAt_formatted').get(function () {
+  return this.createdAt.toLocaleDateString();
+})
+
+CommentSchema.virtual('updatedAt_formatted').get(function () {
+  return this.updatedAt.toLocaleDateString();
 })
 
 module.exports = mongoose.model('Comment', CommentSchema);

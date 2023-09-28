@@ -13,8 +13,12 @@ const BlogPostSchema = new Schema ({
   toJSON: { virtuals: true }
 });
 
-BlogPostSchema.virtual('timestamp_formatted').get(function () {
-  return this.timestamp.toLocaleDateString();
+BlogPostSchema.virtual('createdAt_formatted').get(function () {
+  return this.createdAt.toLocaleDateString();
+})
+
+BlogPostSchema.virtual('updatedAt_formatted').get(function () {
+  return this.updatedAt.toLocaleDateString();
 })
 
 module.exports = mongoose.model('BlogPost', BlogPostSchema);
