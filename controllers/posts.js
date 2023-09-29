@@ -1,6 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const asyncHandler = require("express-async-handler");
+const { body, validationResult } = require("express-validator");
 
 const BlogPost = require('../models/post');
 const User = require('../models/user');
@@ -34,6 +35,19 @@ exports.post_detail_get = asyncHandler(async (req, res, next) => {
   res.json({post, comments});
 });
 
+// POST blogpost create
+exports.post_create_post = asyncHandler(async (req, res, next) => {
+  // ADD AUTHOR IDENTIFIER (req.user)
+  const post = new BlogPost({
+    author: '651536144dfb5f33cc0f8c63',
+    title: req.body.title,
+    text: req.body.text,
+    visibility: 'hidden',
+  })
+  await post.save();
+  res.redirect(`/posts/${post._id}`);
+})
+
 
 // PUT post visibility
 exports.post_visibility_put = asyncHandler(async (req, res, next) => {
@@ -41,4 +55,10 @@ exports.post_visibility_put = asyncHandler(async (req, res, next) => {
   post.visibility === 'public' ? post.visibility = 'hidden' : post.visibility = 'public';
   await post.save();
   res.redirect(`/posts/${req.params.id}`);
+} )
+
+// DELETE post
+exports.post_delete_delete = asyncHandler(async (req, res, next) => {
+  await BlogPost.findByIdAndRemove(req.params.id);
+  res.redirect(`/posts/all`);
 } )
