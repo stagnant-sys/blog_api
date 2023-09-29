@@ -16,7 +16,7 @@ exports.posts_index_public_get = asyncHandler(async (req, res, next) => {
 });
 
 // GET all posts (private and public)
-exports.post_index_get = asyncHandler(async (req, res, next) => {
+exports.posts_index_get = asyncHandler(async (req, res, next) => {
   const posts = await BlogPost.find({})
     .sort({ timestamp: -1 })
     .populate('author')
