@@ -33,3 +33,12 @@ exports.post_detail_get = asyncHandler(async (req, res, next) => {
   ])
   res.json({post, comments});
 });
+
+
+// PUT post visibility
+exports.post_visibility_put = asyncHandler(async (req, res, next) => {
+  const post = await BlogPost.findById(req.params.id).exec();
+  post.visibility === 'public' ? post.visibility = 'hidden' : post.visibility = 'public';
+  await post.save();
+  res.redirect(`/posts/${req.params.id}`);
+} )
