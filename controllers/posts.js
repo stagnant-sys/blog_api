@@ -45,7 +45,7 @@ exports.post_create_post = asyncHandler(async (req, res, next) => {
     visibility: 'hidden',
   })
   await post.save();
-  res.redirect(`/posts/${post._id}`);
+  res.end();
 })
 
 
@@ -54,11 +54,13 @@ exports.post_visibility_put = asyncHandler(async (req, res, next) => {
   const post = await BlogPost.findById(req.params.id).exec();
   post.visibility === 'public' ? post.visibility = 'hidden' : post.visibility = 'public';
   await post.save();
-  res.redirect(`/posts/${req.params.id}`);
-} )
+  res.end();
+})
+
+//
 
 // DELETE post
 exports.post_delete_delete = asyncHandler(async (req, res, next) => {
   await BlogPost.findByIdAndRemove(req.params.id);
-  res.redirect(`/posts/all`);
+  res.end();
 } )
