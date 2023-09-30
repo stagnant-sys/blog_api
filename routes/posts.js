@@ -15,8 +15,8 @@ router.post('/create', posts_controller.post_create_post);
 // PUT post visibility
 router.put('/:id/visibility', posts_controller.post_visibility_put);
 
-// POST edit post
-router.post('/:id/edit', posts_controller.post_edit_post);
+// Put edit post
+router.put('/:id/edit', posts_controller.post_edit_post);
 
 // DELETE post
 router.delete('/:id/delete', posts_controller.post_delete_delete);
