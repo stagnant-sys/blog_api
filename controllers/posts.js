@@ -70,7 +70,7 @@ exports.post_edit_post = [
     post.title = req.body.title;
     post.text = req.body.text;
     await post.save();
-    res.end();
+    res.redirect(`http://localhost:5173/post/${req.params.id}`);
   })
 ]
 
