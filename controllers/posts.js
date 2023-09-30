@@ -36,17 +36,25 @@ exports.post_detail_get = asyncHandler(async (req, res, next) => {
 });
 
 // POST blogpost create
-exports.post_create_post = asyncHandler(async (req, res, next) => {
-  // ADD AUTHOR IDENTIFIER (req.user)
-  const post = new BlogPost({
-    author: '651536144dfb5f33cc0f8c63',
-    title: req.body.title,
-    text: req.body.text,
-    visibility: 'hidden',
-  })
-  await post.save();
-  res.end();
-})
+exports.post_create_post = [
+  body('title', 'Title must be at least 5 characters long')
+    .trim(),
+  body('text', 'Text must be at least 5 characters long')
+    .trim(),
+
+  asyncHandler(async (req, res, next) => {
+    const errors = validationResult(req);
+    const post = new BlogPost({
+      author: '651536144dfb5f33cc0f8c63',
+      title: req.body.title,
+      text: req.body.text,
+      visibility: 'hidden',
+    })
+    await post.save();
+    res.end();
+  }) 
+]
+
 
 
 // PUT post visibility
