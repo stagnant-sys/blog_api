@@ -59,10 +59,10 @@ exports.post_visibility_put = asyncHandler(async (req, res, next) => {
 
 
 // POST edit post
-/*exports.post_edit_post = asyncHandler(async (req, res, next) => {
-  console.log(req.body);
-  res.end();
-})*/
+exports.post_edit_post = asyncHandler(async (req, res, next) => {
+  const post = await BlogPost.findById(req.params.id);
+  res.json(post);
+})
 
 
 
