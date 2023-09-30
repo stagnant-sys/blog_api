@@ -12,8 +12,8 @@ router.get('/all', posts_controller.posts_index_get);
 // POST create post
 router.post('/create', posts_controller.post_create_post);
 
-// PUT post visibility
-router.put('/:id/visibility', posts_controller.post_visibility_put);
+// PATCH post visibility
+router.patch('/:id/visibility', posts_controller.post_visibility_put);
 
 // PATCH edit post
 router.patch('/:id/edit', posts_controller.post_edit_patch);

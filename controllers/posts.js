@@ -50,7 +50,7 @@ exports.post_create_post = asyncHandler(async (req, res, next) => {
 
 
 // PUT post visibility
-exports.post_visibility_put = asyncHandler(async (req, res, next) => {
+exports.post_visibility_patch = asyncHandler(async (req, res, next) => {
   const post = await BlogPost.findById(req.params.id).exec();
   post.visibility === 'public' ? post.visibility = 'hidden' : post.visibility = 'public';
   await post.save();
@@ -74,8 +74,6 @@ exports.post_edit_patch = [
     res.end();
   })
 ]
-
-
 
 // DELETE post
 exports.post_delete_delete = asyncHandler(async (req, res, next) => {
