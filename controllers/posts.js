@@ -57,7 +57,14 @@ exports.post_visibility_put = asyncHandler(async (req, res, next) => {
   res.end();
 })
 
-//
+
+// POST edit post
+/*exports.post_edit_post = asyncHandler(async (req, res, next) => {
+  console.log(req.body);
+  res.end();
+})*/
+
+
 
 // DELETE post
 exports.post_delete_delete = asyncHandler(async (req, res, next) => {
