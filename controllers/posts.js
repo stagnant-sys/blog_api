@@ -71,7 +71,7 @@ exports.post_edit_post = [
     post.text = req.body.text;
     await post.save();
     res.end();
-  });
+  })
 ]
 
 
