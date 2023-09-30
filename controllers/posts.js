@@ -59,13 +59,20 @@ exports.post_visibility_put = asyncHandler(async (req, res, next) => {
 
 
 // PUT edit post
-exports.post_edit_post = asyncHandler(async (req, res, next) => {
-  const post = await BlogPost.findById(req.params.id).exec();
-  post.title = 'Test edit';
-  post.text = 'Text edited';
-  await post.save();
-  res.end();
-})
+exports.post_edit_post = [
+  body('title')
+    .trim(),
+  body('text')
+    .trim(),
+
+  asyncHandler(async (req, res, next) => {
+    const post = await BlogPost.findById(req.params.id).exec();
+    post.title = req.body.title;
+    post.text = req.body.text;
+    await post.save();
+    res.end();
+  });
+]
 
 
 
