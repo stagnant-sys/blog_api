@@ -59,7 +59,7 @@ exports.post_visibility_put = asyncHandler(async (req, res, next) => {
 
 
 // PUT edit post
-exports.post_edit_post = [
+exports.post_edit_patch = [
   body('title', 'Title must be at least 5 characters long')
     .trim(),
   body('text', 'Text must be at least 5 characters long')
