@@ -4,7 +4,7 @@ const posts_controller = require('../controllers/posts');
 
 
 // GET all public posts
-router.get('/', posts_controller.posts_index_public_get);
+router.get('/public', posts_controller.posts_index_public_get);
 
 // GET all posts (private and public)
 router.get('/all', posts_controller.posts_index_get);
