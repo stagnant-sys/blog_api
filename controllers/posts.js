@@ -60,17 +60,18 @@ exports.post_visibility_put = asyncHandler(async (req, res, next) => {
 
 // PUT edit post
 exports.post_edit_post = [
-  body('title')
+  body('title', 'Title must be at least 5 characters long')
     .trim(),
-  body('text')
+  body('text', 'Text must be at least 5 characters long')
     .trim(),
 
   asyncHandler(async (req, res, next) => {
+    const errors = validationResult(req);
     const post = await BlogPost.findById(req.params.id).exec();
     post.title = req.body.title;
     post.text = req.body.text;
     await post.save();
-    res.redirect(`http://localhost:5173/post/${req.params.id}`);
+    res.end();
   })
 ]
 
