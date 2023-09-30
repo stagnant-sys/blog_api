@@ -50,7 +50,7 @@ exports.post_create_post = asyncHandler(async (req, res, next) => {
 
 
 // PUT post visibility
-exports.post_visibility_patch = asyncHandler(async (req, res, next) => {
+exports.post_visibility_put = asyncHandler(async (req, res, next) => {
   const post = await BlogPost.findById(req.params.id).exec();
   post.visibility === 'public' ? post.visibility = 'hidden' : post.visibility = 'public';
   await post.save();
@@ -59,7 +59,7 @@ exports.post_visibility_patch = asyncHandler(async (req, res, next) => {
 
 
 // PUT edit post
-exports.post_edit_patch = [
+exports.post_edit_put = [
   body('title', 'Title must be at least 5 characters long')
     .trim(),
   body('text', 'Text must be at least 5 characters long')

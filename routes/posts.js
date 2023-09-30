@@ -13,10 +13,10 @@ router.get('/all', posts_controller.posts_index_get);
 router.post('/create', posts_controller.post_create_post);
 
 // PATCH post visibility
-router.patch('/:id/visibility', posts_controller.post_visibility_put);
+router.put('/:id/visibility', posts_controller.post_visibility_put);
 
 // PATCH edit post
-router.patch('/:id/edit', posts_controller.post_edit_patch);
+router.put('/:id/edit', posts_controller.post_edit_put);
 
 // DELETE post
 router.delete('/:id/delete', posts_controller.post_delete_delete);
