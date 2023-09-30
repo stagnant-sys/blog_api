@@ -48,7 +48,7 @@ exports.post_create_post = [
       author: '651536144dfb5f33cc0f8c63',
       title: req.body.title,
       text: req.body.text,
-      visibility: 'hidden',
+      visibility: req.body.visibility,
     })
     await post.save();
     res.end();
