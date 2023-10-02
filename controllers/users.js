@@ -13,7 +13,7 @@ exports.users_list_get = asyncHandler(async (req, res, next) => {
 
 // GET user detail
 exports.user_detail_get = asyncHandler(async (req, res, next) => {
-  res.send('Details for user' + req.params.id);
+  res.json(req.user);
 })
 
 // POST user signup
