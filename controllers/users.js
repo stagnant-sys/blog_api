@@ -13,7 +13,8 @@ exports.users_list_get = asyncHandler(async (req, res, next) => {
 
 // GET user detail
 exports.user_detail_get = asyncHandler(async (req, res, next) => {
-  res.json(req.user);
+  const user = req.user;
+  res.send(user);
 })
 
 // POST user signup
