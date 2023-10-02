@@ -13,7 +13,7 @@ exports.posts_index_public_get = asyncHandler(async (req, res, next) => {
     .sort({ timestamp: -1 })
     .populate('author', 'username')
     .exec();
-  res.json(posts);
+  res.json(req);
 });
 
 // GET all posts (private and public)
