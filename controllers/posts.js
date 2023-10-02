@@ -88,3 +88,20 @@ exports.post_delete_delete = asyncHandler(async (req, res, next) => {
   await BlogPost.findByIdAndRemove(req.params.id);
   res.end();
 } )
+
+// POST comment
+exports.post_comment_post = [
+  body('text', 'Text must be at least 5 characters long')
+    .trim(),
+
+  asyncHandler(async (req, res, next) => {
+    const errors = validationResult(req);
+    const comment = new Comment ({
+      author: '651536144dfb5f33cc0f8c64',
+      post: req.params.id,
+      text: req.body.text,
+    });
+    await comment.save();
+    res.end();
+  })
+]
