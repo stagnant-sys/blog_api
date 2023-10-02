@@ -56,3 +56,18 @@ exports.user_signup_post = [
     }
   })
 ]
+
+// POST user login
+exports.user_login_post = [
+  body('username', 'Invalid username')
+    .trim()
+    .escape(),
+
+  body('password', 'Invalid password')
+    .trim(),
+
+  asyncHandler(async (req, res, next) => {
+    console.log(req.body);
+    res.send(req.body);
+  })
+]
