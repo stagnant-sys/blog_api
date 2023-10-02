@@ -57,26 +57,3 @@ exports.user_signup_post = [
     }
   })
 ]
-
-// Log in
-exports.log_in_post = passport.authenticate("local", {
-  successRedirect: "/",
-  failureRedirect: "/user/log-in",
-  failureMessage: true
-})
-
-exports.check_user = asyncHandler(async (req, res, next) => {
-  console.log(req.user);
-  res.end();
-})
-
-
-// Log out
-exports.log_out_get = asyncHandler((req, res, next) => {
-  req.logout((err) => {
-    if (err) {
-      return next(err);
-    }
-    res.redirect("/");
-  });
-})
