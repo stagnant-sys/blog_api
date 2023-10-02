@@ -5,7 +5,8 @@ const { body, validationResult } = require("express-validator");
 
 import Comment from '../models/comment';
 
+// DELETE comment
 exports.delete_comment_delete = asyncHandler(async (req, res, next) => {
   await Comment.findByIdAndRemove(req.params.id);
   res.end();
-})
+});
