@@ -3,7 +3,9 @@ const router = express.Router();
 const asyncHandler = require("express-async-handler");
 const { body, validationResult } = require("express-validator");
 
-import Comment from '../models/comment';
+const BlogPost = require('../models/post');
+const User = require('../models/user');
+const Comment = require('../models/comment');
 
 // DELETE comment
 exports.delete_comment_delete = asyncHandler(async (req, res, next) => {
