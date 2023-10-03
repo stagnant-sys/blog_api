@@ -15,11 +15,11 @@ router.post('/signup', users_controller.user_signup_post);
 
 // POST user login
 router.post('/login', 
-  passport.authenticate("local", {
-    successRedirect: "/",
-    failureRedirect: "/"
-  },
-));
+  passport.authenticate('local', { failureRedirect: '/', failureMessage: true }),
+    function(req, res) {
+      res.redirect('/~' + req.user.username);
+    }
+);
 
 
 
