@@ -19,8 +19,10 @@ router.post('/login',
     successRedirect: "/",
     failureRedirect: "/"
   },
-  console.log(currentUser))
-);
+  function(req, res) {
+    console.log(req.user);
+  }
+));
 
 
 
