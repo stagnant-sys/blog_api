@@ -18,7 +18,8 @@ router.post('/login',
   passport.authenticate("local", {
     successRedirect: "/",
     failureRedirect: "/"
-  })
+  },
+  console.log(currentUser))
 );
 
 
