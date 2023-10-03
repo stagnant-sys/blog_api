@@ -16,9 +16,9 @@ router.post('/signup', users_controller.user_signup_post);
 // POST user login
 router.post('/login', 
   passport.authenticate('local', { failureRedirect: '/', failureMessage: true }),
-    function(req, res) {
-      res.redirect('/success');
-    }
+  function(req, res) {
+    res.redirect('/success');
+  }
 );
 
 
