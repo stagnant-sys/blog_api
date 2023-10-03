@@ -18,7 +18,7 @@ router.post('/login',
   passport.authenticate('local', { failureRedirect: '/', failureMessage: true }),
   function(req, res) {
     const data = {user: req.user.username}
-    res.json(data);
+    res.send(data);
   }
 );
 
