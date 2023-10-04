@@ -74,11 +74,9 @@ exports.user_signup_post = [
   })
 ]*/
 
-exports.user_login_post = asyncHandler(async (req, res, next) => {
-  console.log(`Login info: ${JSON.stringify(req.body)}`);
-  await passport.authenticate("local", {
-    successRedirect: "/",
-    failureRedirect: "/",
-    failureMessage: true
-  });
-})
+exports.user_login_post = () => {
+  passport.authenticate('local', { failureRedirect: '/login' }),
+  function(req, res) {
+    res.redirect('/');
+  };
+}
