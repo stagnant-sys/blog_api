@@ -1,6 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const asyncHandler = require("express-async-handler");
+const passport = require("passport");
 const bcrypt = require('bcryptjs');
 const { body, validationResult } = require("express-validator");
 
@@ -59,7 +60,7 @@ exports.user_signup_post = [
 ]
 
 // POST user login
-exports.user_login_post = [
+/*exports.user_login_post = [
   body('username', 'Invalid username')
     .trim()
     .escape(),
@@ -69,6 +70,12 @@ exports.user_login_post = [
 
   asyncHandler(async (req, res, next) => {
     console.log(req.body);
-    res.send(req.body);
+    res.json(req.body);
   })
-]
+]*/
+
+exports.user_login_post = passport.authenticate("local", {
+  successRedirect: "/",
+  failureRedirect: "/",
+  failureMessage: true
+});
