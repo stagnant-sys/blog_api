@@ -87,8 +87,8 @@ exports.user_login_post = asyncHandler(async (req, res, next) => {
       if (err){
         next(err);
       }
-      const body = {_id: user._id, username: user.username}
-      return res.status(200).json({body});
+      const userInfo = {_id: user._id, username: user.username}
+      return res.status(200).json({userInfo});
     });
   }) (req, res, next);
   } catch (err) {
