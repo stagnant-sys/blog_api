@@ -74,7 +74,7 @@ exports.user_signup_post = [
   })
 ]*/
 
-exports.user_login_post = () => {
+exports.user_login_post = (req, res, next) => {
   res.send('Hello');
   /*passport.authenticate('local', { failureRedirect: '/login' }),
   function(req, res) {
