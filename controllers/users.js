@@ -76,18 +76,18 @@ exports.user_signup_post = [
 
 exports.user_login_post = asyncHandler(async (req, res, next) => {
   try {
-    passport.authenticate ('local', {session: false}, (err, user, info) =>{
+    passport.authenticate ('local', {session: false}, (err, user, userData) =>{
       if (err || !user){
         const error = new Error('User does not exist')
         return res.status(403).json({
-          info
+          userData
         })
       }
     req.login (user, {session: false}, (err) => {
       if (err){
         next(err);
       }
-      const body = {_id: user._id, username: user.username, admin: user.admin}
+      const body = {_id: user._id, username: user.username}
       return res.status(200).json({body});
     });
   }) (req, res, next);
