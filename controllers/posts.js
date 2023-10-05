@@ -45,7 +45,7 @@ exports.post_create_post = [
   asyncHandler(async (req, res, next) => {
     const errors = validationResult(req);
     const post = new BlogPost({
-      author: '651536144dfb5f33cc0f8c63',
+      author: req.body.author,
       title: req.body.title,
       text: req.body.text,
       visibility: req.body.visibility,
