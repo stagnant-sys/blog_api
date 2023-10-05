@@ -10,7 +10,7 @@ const Comment = require('../models/comment');
 // GET all public posts
 exports.posts_index_public_get = asyncHandler(async (req, res, next) => {
   const posts = await BlogPost.find({ visibility: 'public' })
-    .sort({ createdAt: 1 })
+    .sort({ createdAt: -1 })
     .populate('author', 'username')
     .exec();
   res.json(posts);
@@ -19,7 +19,7 @@ exports.posts_index_public_get = asyncHandler(async (req, res, next) => {
 // GET all posts (private and public)
 exports.posts_index_get = asyncHandler(async (req, res, next) => {
   const posts = await BlogPost.find({})
-    .sort({ createdAt: 1 })
+    .sort({ createdAt: -1 })
     .populate('author')
     .exec();
   res.json(posts);
