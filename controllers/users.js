@@ -87,7 +87,7 @@ exports.user_login_post = asyncHandler(async (req, res, next) => {
       if (err){
         next(err);
       }
-      const userInfo = {_id: user._id, username: user.username}
+      const userInfo = { _id: user._id, username: user.username, role: user.role }
       return res.status(200).json({userInfo});
     });
   }) (req, res, next);

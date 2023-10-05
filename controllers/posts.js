@@ -97,7 +97,7 @@ exports.post_comment_post = [
   asyncHandler(async (req, res, next) => {
     const errors = validationResult(req);
     const comment = new Comment ({
-      author: '651536144dfb5f33cc0f8c64',
+      author: req.body.author,
       post: req.params.id,
       text: req.body.text,
     });
