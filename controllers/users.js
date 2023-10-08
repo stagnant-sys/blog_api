@@ -43,6 +43,7 @@ exports.user_signup_post = [
     });
 
     if (!errors.isEmpty()) {
+      res.sendStatus(500);
       res.json(errors.array());
       return;
     } else {
