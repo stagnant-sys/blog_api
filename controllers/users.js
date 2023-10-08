@@ -64,14 +64,12 @@ exports.user_login_post = asyncHandler(async (req, res, next) => {
     passport.authenticate ('local', {session: false}, (err, user, userData) => {
       if (err || !user) {
         const error = new Error('User does not exist')
-        res.send(error);
         return res.status(403).json({
           userData
         })
       }
       req.login (user, {session: false}, (err) => {
         if (err){
-          console.log(err);
           next(err);
         }
         const userInfo = { _id: user._id, username: user.username, role: user.role }
