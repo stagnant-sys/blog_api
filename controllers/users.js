@@ -20,9 +20,9 @@ exports.user_detail_get = asyncHandler(async (req, res, next) => {
 
 // POST user signup
 exports.user_signup_post = [
-  body('username', 'Username must contain at least 3 characters')
+  body('username', 'Username must contain at least 5 characters')
     .trim()
-    .isLength()
+    .isLength({ min: 5 })
     .escape()
     .custom(async (value) => {
       const username = await User.find({ username: value }).exec();
