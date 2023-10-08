@@ -32,6 +32,9 @@ exports.post_detail_get = asyncHandler(async (req, res, next) => {
     await BlogPost.findById(req.params.id).populate('author', 'username').exec(),
     await Comment.find({ post : req.params.id }).populate('author', 'username').exec(),
   ])
+  if (!post) {
+    res.sendStatus(404);
+  }
   res.json({post, comments});
 });
 
