@@ -59,38 +59,25 @@ exports.user_signup_post = [
   })
 ]
 
-// POST user login
-/*exports.user_login_post = [
-  body('username', 'Invalid username')
-    .trim()
-    .escape(),
-
-  body('password', 'Invalid password')
-    .trim(),
-
-  asyncHandler(async (req, res, next) => {
-    console.log(req.body);
-    res.json(req.body);
-  })
-]*/
-
 exports.user_login_post = asyncHandler(async (req, res, next) => {
   try {
-    passport.authenticate ('local', {session: false}, (err, user, userData) =>{
-      if (err || !user){
+    passport.authenticate ('local', {session: false}, (err, user, userData) => {
+      if (err || !user) {
         const error = new Error('User does not exist')
+        res.send(error);
         return res.status(403).json({
           userData
         })
       }
-    req.login (user, {session: false}, (err) => {
-      if (err){
-        next(err);
-      }
-      const userInfo = { _id: user._id, username: user.username, role: user.role }
-      return res.status(200).json({userInfo});
-    });
-  }) (req, res, next);
+      req.login (user, {session: false}, (err) => {
+        if (err){
+          console.log(err);
+          next(err);
+        }
+        const userInfo = { _id: user._id, username: user.username, role: user.role }
+        return res.status(200).json({userInfo});
+      });
+    }) (req, res, next);
   } catch (err) {
     res.status(403).json({
       err
