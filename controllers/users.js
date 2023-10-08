@@ -43,7 +43,7 @@ exports.user_signup_post = [
     });
 
     if (!errors.isEmpty()) {
-      req.json({errors: errors.array(), status: 500});
+      req.json(errors.array());
       return;
     } else {
       bcrypt.hash(req.body.password, 10, async (err, hashedPassword) => {
