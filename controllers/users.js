@@ -46,6 +46,7 @@ exports.user_signup_post = [
       res.json(errors.array());
       return;
     } else {
+      res.json(errors.array());
       bcrypt.hash(req.body.password, 10, async (err, hashedPassword) => {
         try {
           user.password = hashedPassword;
