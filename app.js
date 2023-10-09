@@ -81,7 +81,7 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(cors({
-  origin: ['https://scientized.netlify.app/', 'https://scientized-admin.netlify.app/'],
+  origin: 'https://scientized.netlify.app/'
 }));
 
 app.use('/', indexRouter);
