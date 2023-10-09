@@ -73,9 +73,9 @@ passport.use(
     };
   })
 );
+
 app.all('*', function(req, res, next) {
   let origin = req.headers.origin;
-  headers.add("Access-Control-Allow-Methods", "GET, POST, OPTIONS, PUT, DELETE");
   if (corsOrigins.origin.indexOf(origin) >= 0){
       res.header("Access-Control-Allow-Origin", origin);
   }
@@ -88,6 +88,12 @@ app.all('*', function(req, res, next) {
     origin: 'https://scientized.netlify.app'
   }
 ));*/
+app.use(function (req, res, next) {
+  res.header("Access-Control-Allow-Origin", "*");
+  res.header("Access-Control-Allow-Methods", "GET, PUT, POST, DELETE");
+  res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept, Authorization");
+  next();
+});
 app.use(logger('dev'));
 app.use(session({ secret: "cats", resave: false, saveUninitialized: true }));
 app.use(passport.initialize());
