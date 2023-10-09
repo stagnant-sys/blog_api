@@ -34,6 +34,14 @@ exports.user_signup_post = [
     .trim()
     .isLength({ min: 5 })
     .escape(),
+  body('password_confirm')
+    .custom((value, {req}) => {
+      if (value !== req.body.password) {
+        throw new Error('Password confirm doesn\'t match')
+      } else {
+        return true;
+      };
+    }),
 
   asyncHandler(async (req, res, next) => {
     const errors = validationResult(req);
