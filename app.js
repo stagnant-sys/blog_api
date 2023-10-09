@@ -20,6 +20,11 @@ const User = require('./models/user');
 
 const app = express();
 
+const corsOrigins = {
+  origin: ['https://scientized.netlify.app', 'https://scientized-admin.netlify.app'],
+}
+
+
 // Passport setup
 passport.serializeUser((user, done) => {
   done(null, user.id);
@@ -68,11 +73,20 @@ passport.use(
     };
   })
 );
-app.use(cors(
+app.all('*', function(req, res, next) {
+  let origin = req.headers.origin;
+  if (corsOrigins.origin.indexOf(origin) >= 0){
+      res.header("Access-Control-Allow-Origin", origin);
+  }         
+  res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+  next();
+});
+
+/*app.use(cors(
   {
     origin: 'https://scientized.netlify.app'
   }
-));
+));*/
 app.use(logger('dev'));
 app.use(session({ secret: "cats", resave: false, saveUninitialized: true }));
 app.use(passport.initialize());
