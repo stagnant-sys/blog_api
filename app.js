@@ -75,9 +75,10 @@ passport.use(
 );
 app.all('*', function(req, res, next) {
   let origin = req.headers.origin;
+  headers.add("Access-Control-Allow-Methods", "GET, POST, OPTIONS, PUT, DELETE");
   if (corsOrigins.origin.indexOf(origin) >= 0){
       res.header("Access-Control-Allow-Origin", origin);
-  }         
+  }
   res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
   next();
 });
