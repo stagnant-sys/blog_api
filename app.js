@@ -80,9 +80,7 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
-app.use(cors({
-  origin: 'https://scientized.netlify.app/'
-}));
+app.use(cors());
 
 app.use('/', indexRouter);
 app.use('/posts', postsRouter);
